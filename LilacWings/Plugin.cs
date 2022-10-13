@@ -20,13 +20,12 @@ namespace LilacWings
         [HarmonyPostfix]
         [HarmonyPatch(typeof(FPPlayer), nameof(FPPlayer.State_Init), MethodType.Normal)]
         [HarmonyPatch(typeof(FPPlayer), nameof(FPPlayer.State_InAir), MethodType.Normal)]
-        static void Postfix(ref bool ___hasSpecialItem)
+        static void Postfix(FPPlayer __instance)
         {
-            if (GameObject.Find("Player 1").GetComponent<FPPlayer>().characterID.ToString() == "LILAC")
+            if (__instance.characterID == FPCharacterID.LILAC)
             {
-                ___hasSpecialItem = true;
+                __instance.hasSpecialItem = true;
             }
         }
-
     }
 }
